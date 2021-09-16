@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Polling Unit Results</h1>
+  <p>Welcome to 2023 General Election</p>
+  <h2>List of Polling Units</h2>
+  {% if poll_list %}
+  <ul>
+    {% for poll in poll_list %}
+      <li>
+        <a href="{{ poll.get_absolute_url }}">{{ poll.polling_unit_name }}</a> ({{ poll.polling_unit_number }})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>Polling Unit Not Found.</p>
+  {% endif %}
+{% endblock %}

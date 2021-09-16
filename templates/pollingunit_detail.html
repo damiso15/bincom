@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Title: {{ poll.polling_unit_name }}</h1>
+  {% for abb in abbrev %}
+  <p><strong>Party Abbreviation:</strong> {{ abb.party_abbreviation }}</p>
+  <p><strong>Party Score:</strong> {{ abb.party_score }}</p>
+  {% endfor %}
+  <div style="margin-left:20px;margin-top:20px">
+
+  </div>
+{% endblock %}
