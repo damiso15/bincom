@@ -6,11 +6,17 @@ from .models import AgentName, AnnouncedLGAResults, AnnouncedPUResults, Announce
 # Create your views here.
 
 
+# class IndexView(generic.ListView):
+#     template_name = 'index.html'
+def index_view(request):
+    return render(request, 'index.html')
+
+
 class PollingUnitListView(generic.ListView):
     model = PollingUnit
     context_object_name = 'poll_list'
     queryset = PollingUnit.objects.only('unique_id', 'polling_unit_name')
-    template_name = 'index.html'
+    template_name = 'pollingunit_list.html'
 
 
 def polling_unit_detail_view(request, pk):
@@ -22,5 +28,5 @@ def polling_unit_detail_view(request, pk):
         'abbrev': abbrev,
     }
     print(poll, 'this is working')
-    return render(request, 'pollingunit_detail.html', context)
+    return render(request, 'pollingunit_result.html', context)
 

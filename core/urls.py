@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from polls import views
 
-app_name = 'polling'
+app_name = 'polls'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.PollingUnitListView.as_view(), name='index'),
-    path('polling_unit/<int:pk>', views.polling_unit_detail_view, name='polling_unit_result')
+    path('', views.index_view, name='index'),
+    path('polling-unit-list', views.PollingUnitListView.as_view(), name='polling_unit_list'),
+    path('polling-unit-result/<int:pk>', views.polling_unit_detail_view, name='polling_unit_result')
 ]
