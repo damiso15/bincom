@@ -19,7 +19,7 @@ def polling_unit_detail_view(request, pk):
     print(abbrev)
     context = {
         'poll': poll,
-        'abbreviations': abbrev,
+        'abbrev': abbrev,
     }
     print(poll, 'this is working')
     return render(request, 'pollingunit_detail.html', context)

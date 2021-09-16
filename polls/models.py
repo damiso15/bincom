@@ -62,7 +62,7 @@ class LGA(models.Model):
     state_id = models.IntegerField(validators=[MaxValueValidator(50)])
     lga_description = models.TextField(blank=True)
     entered_by_user = models.CharField(max_length=50)
-    date_entered = models.DateTimeField(default=None)
+    date_entered = models.DateTimeField(null=True)
     user_ip_address = models.CharField(max_length=50)
 
 
