@@ -26,9 +26,9 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['**.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -82,27 +82,27 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': os.getenv('USER'),
-#         'USER': os.getenv('USER'),
-#         'PASSWORD': os.getenv('PASSWORD'),
-#         'HOST': os.getenv('HOST'),
-#         'PORT': '5432',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'nwfijxbt',
         'USER': 'nwfijxbt',
-        'PASSWORD': 'cPjPDsn7jvqNW5kYWvT0RJdpZ7qR2TbZ',
+        'PASSWORD': os.getenv('PASSWORD'),
         'HOST': 'chunee.db.elephantsql.com',
         'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'nwfijxbt',
+#         'USER': 'nwfijxbt',
+#         'PASSWORD': 'cPjPDsn7jvqNW5kYWvT0RJdpZ7qR2TbZ',
+#         'HOST': 'chunee.db.elephantsql.com',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
