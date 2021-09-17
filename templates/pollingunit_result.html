@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Title: {{ poll.polling_unit_name }}</h1>
+  <h1><strong>{{ poll.polling_unit_name }}</strong></h1>
   {% for abb in abbrev %}
   <p><strong>Party Abbreviation:</strong> {{ abb.party_abbreviation }}</p>
   <p><strong>Party Score:</strong> {{ abb.party_score }}</p>

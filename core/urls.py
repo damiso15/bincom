@@ -23,5 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index_view, name='index'),
     path('polling-unit-list', views.PollingUnitListView.as_view(), name='polling_unit_list'),
-    path('polling-unit-result/<int:pk>', views.polling_unit_detail_view, name='polling_unit_result')
+    path('polling-unit-result/<int:pk>', views.polling_unit_detail_view, name='polling_unit_result'),
+    path('lga-list', views.LGAListView.as_view(), name='lga_list'),
+    path('lga-polling-result/<int:pk>', views.lga_detail_view, name='lga_polling_result'),
+
 ]

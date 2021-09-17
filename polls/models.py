@@ -65,6 +65,10 @@ class LGA(models.Model):
     date_entered = models.DateTimeField(null=True)
     user_ip_address = models.CharField(max_length=50)
 
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this book."""
+        return reverse('lga_polling_result', args=[str(self.unique_id)])
+
 
 class Party(models.Model):
     id = models.AutoField(validators=[MaxValueValidator(11)], primary_key=True)

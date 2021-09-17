@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1><strong>2023 GENERAL ELECTION</strong></h1>
+  <p>Welcome to 2023 General Election</p>
+  <h2>List of Delta State Polling Units</h2>
+  {% if lga_list %}
+  <ul>
+    {% for lga in lga_list %}
+      <li>
+        <a href="{{ lga.get_absolute_url }}">{{ lga.lga_name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>Polling Unit Not Found.</p>
+  {% endif %}
+{% endblock %}
