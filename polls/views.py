@@ -22,7 +22,7 @@ def polling_unit_detail_view(request, pk):
     poll = get_object_or_404(PollingUnit, pk=pk)
     abbrev = AnnouncedPUResults.objects.all().filter(polling_unit_unique_id=pk)
     if abbrev.count() == 0:
-        raise Http404("Result for this Polling Unit is not yet out")
+        return render(request, 'pollinguniterror_page.html', {'poll': poll})
     context = {
         'poll': poll,
         'abbrev': abbrev,
@@ -40,14 +40,14 @@ class LGAListView(generic.ListView):
 def lga_detail_view(request, pk):
     lga = LGA.objects.get(lga_id=pk)
     if not lga:
-        return render(request, 'error_page.html')
+        return render(request, 'lgaerror_page.html')
     poll = PollingUnit.objects.all().filter(lga_id=pk)
     poll_unit_id_list = []
     for p in poll:
         poll_unit_id_list.append(p.unique_id)
     result = AnnouncedPUResults.objects.all().filter(polling_unit_unique_id__in=poll_unit_id_list)
     if result.count() == 0:
-        return render(request, 'error_page.html', {'lga': lga})
+        return render(request, 'lgaerror_page.html', {'lga': lga})
     result_list = []
     for item in result:
         cal = item.party_score
