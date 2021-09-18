@@ -67,7 +67,7 @@ class LGA(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a detail record for this book."""
-        return reverse('lga_polling_result', args=[str(self.unique_id)])
+        return reverse('lga_polling_result', args=[str(self.lga_id)])
 
 
 class Party(models.Model):

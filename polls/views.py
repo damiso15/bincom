@@ -38,23 +38,25 @@ class LGAListView(generic.ListView):
 
 
 def lga_detail_view(request, pk):
-    lga = get_object_or_404(LGA, lga_id=pk)
-    poll = PollingUnit.objects.all().filter(pk=pk)
-    result = AnnouncedPUResults.objects.all().filter(polling_unit_unique_id=pk)
+    lga = LGA.objects.get(lga_id=pk)
+    if not lga:
+        return render(request, 'error_page.html')
+    poll = PollingUnit.objects.all().filter(lga_id=pk)
+    poll_unit_id_list = []
+    for p in poll:
+        poll_unit_id_list.append(p.unique_id)
+    result = AnnouncedPUResults.objects.all().filter(polling_unit_unique_id__in=poll_unit_id_list)
     if result.count() == 0:
-        raise Http404("Result for this Local Government is not out.")
+        return render(request, 'error_page.html', {'lga': lga})
     result_list = []
     for item in result:
         cal = item.party_score
         result_list.append(cal)
     result_sum = sum(result_list)
-    print(lga)
-    print(poll)
     context = {
         'lga': lga,
         'poll': poll,
         'result': result,
         'result_sum': result_sum,
     }
-    print(result, 'this is working')
     return render(request, 'lgapolling_result.html', context)
